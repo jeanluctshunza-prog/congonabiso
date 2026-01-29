@@ -7,17 +7,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --rdc-blue: #007FFF;   /* Bleu ciel officiel */
-            --rdc-yellow: #F7D027; /* Jaune or officiel */
-            --rdc-red: #CE1021;    /* Rouge officiel */
-            --white: #FFFFFF;
+            --rdc-blue: #007FFF;
+            --rdc-yellow: #F7D027;
+            --rdc-red: #CE1021;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f4f8;
+            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -26,205 +25,167 @@
             position: relative;
         }
 
-        /* Arrière-plan de drapeaux tombants 🇨🇩 */
-        .falling-flags {
+        /* Arrière-plan avec opacité améliorée */
+        #bg-flags {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
             z-index: 0;
         }
 
-        .flag {
+        .falling-flag {
             position: absolute;
-            font-size: 25px;
-            user-select: none;
+            width: 40px; /* Taille des petits drapeaux qui tombent */
+            opacity: 0.8; /* Opacité bien visible */
             animation: fall linear infinite;
         }
 
         @keyframes fall {
-            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+            0% { transform: translateY(-10vh) rotate(0deg); }
+            100% { transform: translateY(110vh) rotate(360deg); }
         }
 
-        /* Conteneur du formulaire moderne */
+        /* Style Moderne (Effet Verre) */
         .form-container {
-            background: rgba(255, 255, 255, 0.98);
-            padding: 40px;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 30px 40px;
+            border-radius: 25px;
             width: 90%;
-            max-width: 500px;
-            box-shadow: 0 15px 35px rgba(0, 127, 255, 0.2);
-            border-top: 8px solid var(--rdc-blue);
+            max-width: 450px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
             z-index: 10;
-            position: relative;
-            animation: slideUp 0.6s ease-out;
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        h2 {
             text-align: center;
-            color: var(--rdc-blue);
-            margin-bottom: 5px;
-            font-weight: 700;
-            text-transform: uppercase;
+            animation: fadeIn 0.8s ease-out;
         }
 
-        .mouvement-name {
-            color: var(--rdc-red);
-            text-align: center;
-            display: block;
-            font-size: 1.4em;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--rdc-yellow);
-            padding-bottom: 10px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        .input-group {
-            margin-bottom: 15px;
+        /* Logo Dynamique */
+        .logo-rdc {
+            width: 100px;
+            height: auto;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
         }
 
-        input[type="text"], input[type="email"] {
+        h2 { color: var(--rdc-blue); margin: 0; font-weight: 700; font-size: 1.5rem; }
+        .mouvement { color: var(--rdc-red); font-weight: 600; margin-bottom: 20px; display: block; }
+
+        input {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e1e8ed;
-            border-radius: 10px;
+            padding: 14px;
+            margin: 10px 0;
+            border: 2px solid transparent;
+            background: #f1f3f6;
+            border-radius: 12px;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s ease;
+            font-family: 'Poppins';
+            transition: 0.3s;
         }
 
         input:focus {
-            border-color: var(--rdc-blue);
             outline: none;
-            box-shadow: 0 0 10px rgba(0, 127, 255, 0.1);
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            margin: 20px 0;
-            font-size: 0.9em;
-            color: #555;
-        }
-
-        input[type="checkbox"] {
-            margin-top: 4px;
-            accent-color: var(--rdc-blue);
+            border-color: var(--rdc-blue);
+            background: white;
+            box-shadow: 0 0 15px rgba(0,127,255,0.1);
         }
 
         button {
             width: 100%;
-            padding: 15px;
-            background-color: var(--rdc-blue);
+            padding: 16px;
+            margin-top: 20px;
+            background: var(--rdc-blue);
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 1.1em;
-            font-weight: 600;
+            border-radius: 12px;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 127, 255, 0.3);
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(0,127,255,0.3);
         }
 
         button:hover {
-            background-color: #0066cc;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 127, 255, 0.4);
+            background: #0066cc;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(0,127,255,0.4);
         }
 
-        button:disabled {
-            background-color: #a0aec0;
-            cursor: not-allowed;
-            transform: none;
+        .checkbox-group {
+            text-align: left;
+            font-size: 0.85rem;
+            margin-top: 15px;
+            color: #444;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
         }
     </style>
 </head>
 <body>
 
-<div class="falling-flags" id="bg-flags"></div>
+<div id="bg-flags"></div>
 
 <div class="form-container">
-    <h2>MOUVEMENT CITOYEN</h2>
-    <span class="mouvement-name">CONGO NA BISO 🇨🇩</span>
+    <img src="drapeau.png" alt="Drapeau RDC" class="logo-rdc">
     
-    <form id="adhesionForm">
-        <div class="input-group">
-            <input type="text" name="prenom" placeholder="Votre Prénom" required>
-        </div>
-        <div class="input-group">
-            <input type="text" name="nom" placeholder="Votre Nom" required>
-        </div>
-        <div class="input-group">
-            <input type="text" name="postnom" placeholder="Votre Post-nom" required>
-        </div>
-        <div class="input-group">
-            <input type="text" name="residence" placeholder="Lieu de résidence (Ville/Commune)" required>
-        </div>
-        <div class="input-group">
-            <input type="email" name="user_email" placeholder="Votre adresse Email" required>
-        </div>
+    <h2>MOUVEMENT CITOYEN</h2>
+    <span class="mouvement">CONGO NA BISO</span>
+    
+    <form id="formAdhesion">
+        <input type="text" name="prenom" placeholder="Prénom" required>
+        <input type="text" name="nom" placeholder="Nom" required>
+        <input type="text" name="postnom" placeholder="Post-nom" required>
+        <input type="text" name="residence" placeholder="Ville / Commune" required>
+        <input type="email" name="user_email" placeholder="Email" required>
 
         <div class="checkbox-group">
-            <input type="checkbox" id="legal" required>
-            <label for="legal">Je confirme mon engagement au sein du mouvement et la véracité des informations transmises. 🇨🇩</label>
+            <input type="checkbox" required>
+            <label>Je m'engage fidèlement pour le Congo et le mouvement. 🇨🇩</label>
         </div>
 
-        <button type="submit" id="submitBtn">DEVENIR MEMBRE</button>
+        <button type="submit" id="btn">DEVENIR MEMBRE</button>
     </form>
 </div>
 
 <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbwz-7HKFljiiSLvk9eRSmB9cV4jSMf5Gw8p83ZyPRILx6H9vgy3eb6lbk0yIoUN2U1V/exec';
-    const form = document.getElementById('adhesionForm');
-    const btn = document.getElementById('submitBtn');
+    const form = document.getElementById('formAdhesion');
+    const btn = document.getElementById('btn');
 
-    // Gestion de l'envoi du formulaire
     form.addEventListener('submit', e => {
         e.preventDefault();
         btn.disabled = true;
-        btn.innerText = "Traitement en cours...";
-
+        btn.innerText = "Envoi en cours...";
         fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => {
-                alert("Félicitations ! Votre demande d'adhésion a été transmise à Jean-Luc. 🇨🇩");
+            .then(() => {
+                alert("Demande d'adhésion envoyée avec succès ! 🇨🇩");
                 btn.disabled = false;
                 btn.innerText = "DEVENIR MEMBRE";
                 form.reset();
             })
-            .catch(error => {
-                alert("Une erreur est survenue. Vérifiez votre connexion.");
+            .catch(() => {
+                alert("Erreur. Réessayez.");
                 btn.disabled = false;
                 btn.innerText = "DEVENIR MEMBRE";
             });
     });
 
-    // Animation des drapeaux 🇨🇩
+    // Pluie de drapeaux avec TON IMAGE
     function createFlag() {
-        const flag = document.createElement('div');
-        flag.classList.add('flag');
-        flag.innerHTML = '🇨🇩';
-        flag.style.left = Math.random() * 100 + 'vw';
-        flag.style.animationDuration = (Math.random() * 3 + 4) + 's'; // Entre 4 et 7 secondes
-        flag.style.fontSize = (Math.random() * 10 + 20) + 'px';
-        
+        const flag = document.createElement('img');
+        flag.src = 'drapeau.png'; // Utilise ton image du dépôt
+        flag.classList.add('falling-flag');
+        flag.style.left = Math.random() * 100 + "vw";
+        flag.style.animationDuration = (Math.random() * 3 + 5) + "s";
         document.getElementById('bg-flags').appendChild(flag);
-
-        setTimeout(() => {
-            flag.remove();
-        }, 7000);
+        setTimeout(() => flag.remove(), 8000);
     }
-
-    setInterval(createFlag, 400); // Un nouveau drapeau toutes les 0.4s
+    setInterval(createFlag, 600);
 </script>
 
 </body>
