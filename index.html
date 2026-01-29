@@ -3,274 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CONGO NA BISO | Adhésion Officielle</title>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <title>Adhésion - Congo Na Biso</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #00aaff;
-            --secondary: #25D366; /* Couleur WhatsApp */
-            --bg-dark: #001220;
+            --primary-color: #0056b3; /* Bleu RDC */
+            --accent-color: #f7d027; /* Jaune RDC */
+            --danger-color: #e74c3c; /* Rouge */
+            --text-color: #333;
+            --bg-light: #f4f7f6;
+            --bg-dark: #2c3e50;
         }
 
-        body, html {
+        body {
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-dark);
-            color: white;
-            overflow-x: hidden;
+            color: var(--text-color);
+            background-color: var(--bg-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* Cache les drapeaux qui tombent en dehors de l'écran */
+            position: relative;
         }
 
-        /* Fond de particules fluide */
-        #particles-js {
-            position: fixed;
+        /* Effet de fond animé - Drapeaux RDC */
+        .falling-flags {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            pointer-events: none; /* Permet de cliquer sur le contenu */
+            overflow: hidden;
+            z-index: 0; /* Assure que le fond est derrière le formulaire */
         }
 
-        .main-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
+        .flag-rdc {
+            position: absolute;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%230056b3" width="100" height="100"/><polygon fill="%23e74c3c" points="0,0 75,0 0,75"/><polygon fill="%23f7d027" points="25,0 100,0 100,75"/><polygon fill="%23f7d027" points="0,25 0,100 75,100"/><rect fill="%230056b3" x="0" y="0" width="100" height="100"/><path fill="%23e74c3c" d="M0 0 L100 0 L0 100 Z"/><path fill="%23f7d027" d="M0 25 L75 0 L100 0 L25 100 L0 100 Z"/></svg>'); /* Version simplifiée SVG */
+            background-size: cover;
+            width: 30px; /* Taille des mini-drapeaux */
+            height: 20px;
+            opacity: 0.7;
+            animation: fall linear infinite;
         }
 
-        /* En-tête et Logo */
-        .header-section {
-            text-align: center;
-            margin-bottom: 2rem;
-            animation: fadeInDown 1s ease-out;
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0.8; }
         }
 
-        .logo-box {
-            width: 90px;
-            height: 90px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 3px solid var(--primary);
-            border-radius: 50%;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 800;
-            box-shadow: 0 0 20px rgba(0, 170, 255, 0.4);
+        .form-container {
+            background: rgba(255, 255, 255, 0.95); /* Fond légèrement transparent */
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 550px;
+            width: 90%;
+            margin: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            z-index: 1; /* Assure que le formulaire est au-dessus du fond */
+            position: relative;
+            animation: fadeIn 0.8s ease-out; /* Effet d'apparition en douceur */
         }
 
-        h1 {
-            font-size: 2.2rem;
-            margin: 0;
-            letter-spacing: 2px;
-            color: var(--primary);
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        p.tagline {
-            opacity: 0.8;
-            font-size: 0.9rem;
-            margin-top: 5px;
-        }
-
-        /* Formulaire stylisé */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px);
-            padding: 2.5rem;
-            border-radius: 20px;
-            width: 100%;
-            max-width: 450px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .form-group {
-            margin-bottom: 1.2rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.85rem;
-            color: #ccc;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 14px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(0,0,0,0.2);
-            color: white;
-            font-size: 1rem;
-            box-sizing: border-box;
-            transition: 0.3s;
-        }
-
-        input:focus {
-            border-color: var(--primary);
-            outline: none;
-            background: rgba(0,0,0,0.4);
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 16px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: transform 0.2s, background 0.3s;
-            margin-top: 10px;
-        }
-
-        .btn-submit:hover {
-            background: #0088cc;
-            transform: translateY(-2px);
-        }
-
-        /* Message de succès dynamique */
-        #success-message {
-            display: none;
-            text-align: center;
-            animation: scaleIn 0.5s ease;
-        }
-
-        .whatsapp-btn {
-            display: inline-block;
-            background: var(--secondary);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes scaleIn {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+        h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 2.2em;
+            line-height: 1.2;
+        }
+        h2 span {
+            display: block;
+            font-size: 0.6em;
+            color: var(--accent-color);
+            font-weight: 400;
+        }
+        p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1.1em;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: calc(100% - 20px); /* Ajuste la largeur pour le padding */
+            padding: 12px 10px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(0, 86, 179, 0.2);
+            outline: none;
+        }
+
+        .checkbox-group {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            font-size: 0.95em;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+            transform: scale(1.3); /* Agrandir la checkbox */
+        }
+        .checkbox-group label {
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        button:hover:not(:disabled) {
+            background-color: #004494;
+            transform: translateY(-2px);
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
         }
     </style>
 </head>
 <body>
 
-<div id="particles-js"></div>
+<div class="falling-flags" id="flag-container"></div>
 
-<div class="main-wrapper">
-    <div class="header-section">
-        <div class="logo-box">CNB</div>
-        <h1>CONGO NA BISO</h1>
-        <p class="tagline">Mouvement Citoyen pour le Progrès</p>
-    </div>
+<div class="form-container">
+    <h2>Mouvement Citoyen <br> <span>"Congo Na Biso"</span></h2>
+    <p>Rejoignez-nous pour construire un avenir meilleur pour le Congo !</p>
 
-    <div class="glass-card">
-        <form action="https://api.web3forms.com/submit" method="POST" id="form">
-            <input type="hidden" name="access_key" value="c3132e0c-c466-417d-8152-320d368e7ec8"> <input type="hidden" name="subject" value="Nouveau Membre Congo Na Biso !">
-            <input type="hidden" name="from_name" value="Site Adhésion CNB">
-            
-            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+    <form id="formAdhesion">
+        <input type="text" name="prenom" placeholder="Votre Prénom" required>
+        <input type="text" name="nom" placeholder="Votre Nom" required>
+        <input type="text" name="postnom" placeholder="Votre Post-nom" required>
+        <input type="text" name="residence" placeholder="Lieu de résidence (Ville/Commune)" required>
+        <input type="email" name="user_email" placeholder="Votre adresse Email" required>
 
-            <div class="form-group">
-                <label>Nom Complet</label>
-                <input type="text" name="nom" placeholder="Ex: KABANGE Jean" required>
-            </div>
-
-            <div class="form-group">
-                <label>Téléphone (WhatsApp)</label>
-                <input type="tel" name="telephone" placeholder="+243..." required>
-            </div>
-
-            <div class="form-group">
-                <label>Province / Ville</label>
-                <select name="province" required>
-                    <option value="">Sélectionner...</option>
-                    <option value="Kinshasa">Kinshasa</option>
-                    <option value="Lubumbashi">Lubumbashi</option>
-                    <option value="Goma">Goma</option>
-                    <option value="Bukavu">Bukavu</option>
-                    <option value="Autre">Autre Province</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Commune / Quartier</label>
-                <input type="text" name="commune" placeholder="Votre lieu de résidence" required>
-            </div>
-
-            <button type="submit" class="btn-submit">DEVENIR MEMBRE</button>
-        </form>
-
-        <div id="success-message">
-            <h2 style="color: var(--primary);">FÉLICITATIONS !</h2>
-            <p>Vos données ont été transmises avec succès à la coordination nationale.</p>
-            <p>Rejoignez maintenant notre canal officiel :</p>
-            <a href="https://wa.me/243XXXXXXXXX" class="whatsapp-btn">REJOINDRE LE WHATSAPP</a>
+        <div class="checkbox-group">
+            <input type="checkbox" name="checkbox_id" id="confirm" required>
+            <label for="confirm">Je certifie l'exactitude de mes informations et mon adhésion au mouvement.</label>
         </div>
-    </div>
+
+        <button type="submit" id="btnSubmit">Devenir Membre</button>
+    </form>
 </div>
 
 <script>
-    /* 1. Gestion de l'envoi du formulaire */
-    const form = document.getElementById('form');
-    const successMsg = document.getElementById('success-message');
+    // Ton URL Google Script mise à jour
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwz-7HKFljiiSLvk9eRSmB9cV4jSMf5Gw8p83ZyPRILx6H9vgy3eb6lbk0yIoUN2U1V/exec';
+    const form = document.getElementById('formAdhesion');
+    const btn = document.getElementById('btnSubmit');
 
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', e => {
         e.preventDefault();
-        const formData = new FormData(form);
-        const object = Object.fromEntries(formData);
-        const json = JSON.stringify(object);
+        btn.disabled = true;
+        btn.innerText = "Traitement en cours...";
 
-        const btn = document.querySelector('.btn-submit');
-        btn.innerHTML = "Traitement en cours...";
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                alert("Merci ! Votre demande d'adhésion a été envoyée avec succès à Jean-Luc.");
+                btn.disabled = false;
+                btn.innerText = "Devenir Membre";
+                form.reset(); // Vide le formulaire après succès
+            })
+            .catch(error => {
+                console.error('Erreur !', error.message);
+                alert("Une erreur est survenue lors de l'envoi. Veuillez réessayer.");
+                btn.disabled = false;
+                btn.innerText = "Devenir Membre";
+            });
+    });
 
-        fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: json
-        })
-        .then(async (response) => {
-            let json = await response.json();
-            if (response.status == 200) {
-                form.style.display = "none";
-                successMsg.style.display = "block";
-            } else {
-                alert("Erreur: " + json.message);
-            }
-        })
-        .catch(error => {
-            alert("Erreur de connexion");
+    // Fonction pour générer les drapeaux qui tombent
+    const flagContainer = document.getElementById('flag-container');
+
+    function createFallingFlag() {
+        const flag = document.createElement('div');
+        flag.classList.add('flag-rdc');
+        flag.style.left = Math.random() * 100 + 'vw'; // Position aléatoire sur la largeur
+        flag.style.animationDuration = Math.random() * 5 + 5 + 's'; // Durée de 5 à 10 secondes
+        flag.style.animationDelay = Math.random() * 2 + 's'; // Délai aléatoire
+        flagContainer.appendChild(flag);
+
+        // Supprimer le drapeau après qu'il est tombé pour ne pas surcharger le DOM
+        flag.addEventListener('animationend', () => {
+            flag.remove();
         });
-    });
+    }
 
-    /* 2. Arrière-plan Interactif */
-    particlesJS("particles-js", {
-        "particles": {
-            "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
-            "color": { "value": "#00aaff" },
-            "shape": { "type": "circle" },
-            "opacity": { "value": 0.4 },
-            "size": { "value": 2 },
-            "line_linked": { "enable": true, "distance": 150, "color": "#00aaff", "opacity": 0.2, "width": 1 },
-            "move": { "enable": true, "speed": 1.5, "direction": "none", "out_mode": "out" }
-        },
-        "interactivity": {
-            "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } }
-        }
-    });
+    // Créer un nouveau drapeau toutes les 500ms
+    setInterval(createFallingFlag, 500);
+
+    // Créer quelques drapeaux au démarrage
+    for (let i = 0; i < 10; i++) {
+        createFallingFlag();
+    }
 </script>
 
 </body>
