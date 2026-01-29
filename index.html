@@ -3,217 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Adhésion - Congo Na Biso</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Congo Na Biso - Adhésion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --rdc-blue: #007FFF;
-            --rdc-yellow: #F7D027;
-            --rdc-red: #CE1021;
+        :root { --blue: #007FFF; --yellow: #F7D027; --red: #CE1021; }
+        body { font-family: 'Poppins', sans-serif; margin: 0; background: #e0eafc; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; overflow-y: auto; }
+        #bg-flags { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+        .falling-flag { position: absolute; width: 30px; opacity: 0.7; animation: fall linear infinite; }
+        @keyframes fall { 0% { transform: translateY(-10vh) rotate(0deg); } 100% { transform: translateY(110vh) rotate(360deg); } }
+        
+        .form-container { 
+            background: rgba(255, 255, 255, 0.92); 
+            backdrop-filter: blur(10px); 
+            padding: 25px; 
+            border-radius: 20px; 
+            width: 85%; 
+            max-width: 400px; 
+            margin: 30px auto; 
+            z-index: 10; 
+            text-align: center; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            overflow-x: hidden;
-            overflow-y: auto;
-            position: relative;
+        
+        .logo { width: 80px; margin-bottom: 10px; }
+        .title { color: var(--blue); font-size: 1.3rem; font-weight: 700; margin: 0; }
+        .subtitle { color: var(--red); font-weight: 600; border-bottom: 2px solid var(--yellow); padding-bottom: 5px; margin-bottom: 20px; display: block; }
+        
+        /* Opacité réduite sur les champs comme demandé */
+        input { 
+            width: 100%; 
+            padding: 14px; 
+            margin: 8px 0; 
+            border: 1px solid rgba(0, 127, 255, 0.2); 
+            background: rgba(240, 244, 248, 0.4); 
+            border-radius: 10px; 
+            box-sizing: border-box; 
+            font-size: 16px; 
         }
-
-        /* Fond fixe avec pluie de drapeaux */
-        #bg-flags {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 0;
+        
+        button { 
+            width: 100%; 
+            padding: 16px; 
+            background: var(--blue); 
+            color: white; 
+            border: none; 
+            border-radius: 10px; 
+            font-weight: 700; 
+            margin-top: 15px; 
+            cursor: pointer; 
         }
-
-        .falling-flag {
-            position: absolute;
-            width: 30px; /* Taille adaptée mobile */
-            opacity: 0.7;
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            0% { transform: translateY(-10vh) rotate(0deg); }
-            100% { transform: translateY(110vh) rotate(360deg); }
-        }
-
-        /* Container adapté aux écrans de téléphone */
-        .form-container {
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(15px);
-            padding: 25px 20px;
-            border-radius: 20px;
-            width: 85%;
-            max-width: 400px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.4);
-            z-index: 10;
-            text-align: center;
-            margin: 30px auto; /* Centré avec espace haut/bas */
-            animation: slideIn 0.5s ease-out;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .logo-rdc {
-            width: 90px;
-            height: auto;
-            margin-bottom: 10px;
-        }
-
-        h2 { color: var(--rdc-blue); margin: 0; font-size: 1.3rem; font-weight: 700; }
-        .mouvement { 
-            color: var(--rdc-red); 
-            font-weight: 600; 
-            margin-bottom: 20px; 
-            display: block; 
-            font-size: 1.1rem;
-            border-bottom: 2px solid var(--rdc-yellow);
-            padding-bottom: 5px;
-        }
-
-        /* CHAMPS AVEC OPACITÉ DIMINUÉE */
-        input {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border: 1px solid rgba(0, 127, 255, 0.2);
-            background: rgba(240, 244, 248, 0.5); /* Opacité réduite ici */
-            border-radius: 12px;
-            box-sizing: border-box;
-            font-family: 'Poppins';
-            font-size: 16px; /* Évite le zoom automatique sur iPhone */
-            transition: 0.3s;
-            color: #333;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: var(--rdc-blue);
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 0 10px rgba(0,127,255,0.1);
-        }
-
-        input::placeholder {
-            color: rgba(0, 0, 0, 0.4);
-        }
-
-        .checkbox-group {
-            text-align: left;
-            font-size: 0.8rem;
-            margin: 15px 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            color: #555;
-        }
-
-        input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            margin: 0;
-            accent-color: var(--rdc-blue);
-        }
-
-        /* Bouton large pour mobile */
-        button {
-            width: 100%;
-            padding: 18px;
-            background: var(--rdc-blue);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            box-shadow: 0 8px 15px rgba(0,127,255,0.2);
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        button:active {
-            transform: scale(0.96);
-            background: #0056b3;
-        }
+        
+        .check-box { display: flex; gap: 10px; text-align: left; font-size: 0.8rem; margin: 15px 0; }
     </style>
 </head>
 <body>
-
-<div id="bg-flags"></div>
-
-<div class="form-container">
-    <img src="drapeau.png" alt="Logo RDC" class="logo-rdc">
-    
-    <h2>MOUVEMENT CITOYEN</h2>
-    <span class="mouvement">CONGO NA BISO 🇨🇩</span>
-    
-    <form id="formAdhesion">
-        <input type="text" name="prenom" placeholder="Prénom" required>
-        <input type="text" name="nom" placeholder="Nom" required>
-        <input type="text" name="postnom" placeholder="Post-nom" required>
-        <input type="text" name="residence" placeholder="Ville / Commune" required>
-        <input type="email" name="user_email" placeholder="Votre Email" required>
-
-        <div class="checkbox-group">
-            <input type="checkbox" id="check" required>
-            <label for="check">Je m'engage fidèlement pour le Congo et le mouvement. 🇨🇩</label>
-        </div>
-
-        <button type="submit" id="btn">DEVENIR MEMBRE</button>
-    </form>
-</div>
-
-<script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwz-7HKFljiiSLvk9eRSmB9cV4jSMf5Gw8p83ZyPRILx6H9vgy3eb6lbk0yIoUN2U1V/exec';
-    const form = document.getElementById('formAdhesion');
-    const btn = document.getElementById('btn');
-
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        btn.disabled = true;
-        btn.innerText = "Envoi en cours...";
+    <div id="bg-flags"></div>
+    <div class="form-container">
+        <img src="drapeau.png" alt="RDC" class="logo">
+        <h2 class="title">MOUVEMENT CITOYEN</h2>
+        <span class="subtitle">CONGO NA BISO 🇨🇩</span>
         
-        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => {
-                alert("Demande reçue ! Merci Jean-Luc vous contactera. 🇨🇩");
-                btn.disabled = false;
-                btn.innerText = "DEVENIR MEMBRE";
-                form.reset();
-            })
-            .catch(error => {
-                alert("Erreur réseau. Réessayez.");
-                btn.disabled = false;
-                btn.innerText = "DEVENIR MEMBRE";
-            });
-    });
+        <form id="formAdhesion">
+            <input type="text" name="prenom" placeholder="Prénom" required>
+            <input type="text" name="nom" placeholder="Nom" required>
+            <input type="text" name="postnom" placeholder="Post-nom" required>
+            <input type="text" name="residence" placeholder="Ville / Commune" required>
+            <input type="email" name="user_email" placeholder="Email" required>
+            
+            <div class="check-box">
+                <input type="checkbox" required>
+                <span>Je m'engage fidèlement pour le Congo et le mouvement. 🇨🇩</span>
+            </div>
+            
+            <button type="submit" id="submitBtn">DEVENIR MEMBRE</button>
+        </form>
+    </div>
 
-    // Animation de pluie de drapeaux
-    function createFlag() {
-        const flag = document.createElement('img');
-        flag.src = 'drapeau.png';
-        flag.classList.add('falling-flag');
-        flag.style.left = Math.random() * 100 + "vw";
-        flag.style.animationDuration = (Math.random() * 2 + 4) + "s";
-        document.getElementById('bg-flags').appendChild(flag);
-        
-        setTimeout(() => {
-            flag.remove();
-        }, 6000);
-    }
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwz-7HKFljiiSLvk9eRSmB9cV4jSMf5Gw8p83ZyPRILx6H9vgy3eb6lbk0yIoUN2U1V/exec';
+        const form = document.getElementById('formAdhesion');
+        const btn = document.getElementById('submitBtn');
 
-    setInterval(createFlag, 700);
-</script>
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            btn.disabled = true;
+            btn.innerText = "Envoi en cours...";
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(() => {
+                    alert("Succès ! Tes infos complètes sont envoyées. 🇨🇩");
+                    btn.disabled = false;
+                    btn.innerText = "DEVENIR MEMBRE";
+                    form.reset();
+                })
+                .catch(() => {
+                    alert("Erreur. Réessaye.");
+                    btn.disabled = false;
+                    btn.innerText = "DEVENIR MEMBRE";
+                });
+        });
 
+        function createFlag() {
+            const f = document.createElement('img');
+            f.src = 'drapeau.png';
+            f.className = 'falling-flag';
+            f.style.left = Math.random() * 100 + "vw";
+            f.style.animationDuration = (Math.random() * 2 + 4) + "s";
+            document.getElementById('bg-flags').appendChild(f);
+            setTimeout(() => f.remove(), 6000);
+        }
+        setInterval(createFlag, 800);
+    </script>
 </body>
 </html>
