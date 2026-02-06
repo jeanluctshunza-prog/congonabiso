@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kongo Na Biso (K.N.B) - Le Congo nous appartient</title>
     
-    <meta name="description" content="Découvrez KONGO NA BISO, mouvement citoyen engagé pour le changement en RDC fondé par Ngoma Massundu Philippe. Rejoignez-nous pour bâtir un Congo prospère.">
-    <meta name="keywords" content="Kongo Na Biso, KNB, RDC, Mouvement Citoyen, Ngoma Massundu Philippe, Engagement Jeunesse Congo">
+    <meta name="google-site-verification" content="METS_TON_CODE_ICI" />
+
+    <title>Kongo Na Biso (K.N.B) - Site Officiel</title>
+    
+    <meta name="description" content="Mouvement citoyen KONGO NA BISO fondé par Ngoma Massundu Philippe. Pour une jeunesse congolaise engagée et actrice du changement.">
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     
@@ -17,18 +19,16 @@
             --vert: #28a745;
             --blanc: #ffffff;
             --noir: #1a1a1a;
-            --gris: #f4f4f4;
         }
 
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             color: var(--noir);
-            line-height: 1.8;
+            line-height: 1.6;
             scroll-behavior: smooth;
         }
 
-        /* Header & Navigation */
         header {
             background: var(--vert);
             padding: 1rem 5%;
@@ -38,192 +38,121 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .logo-container { display: flex; align-items: center; }
-        .logo-container img { height: 60px; margin-right: 15px; border-radius: 5px; }
-        .logo-text { color: white; font-weight: bold; font-size: 1.3rem; letter-spacing: 1px; }
+        .logo-container img { height: 50px; margin-right: 10px; }
+        .logo-text { color: white; font-weight: bold; font-size: 1.2rem; }
 
         nav a {
             color: white;
             text-decoration: none;
             margin-left: 20px;
             font-weight: bold;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            font-size: 0.85rem;
         }
-        nav a:hover { color: var(--jaune); }
 
-        /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/hero-bg.jpg') center/cover;
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            background: var(--bleu);
             color: white;
-            padding: 0 20px;
+            padding: 100px 10%;
+            text-align: center;
         }
 
-        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; }
+        .hero h1 { font-size: 3rem; margin: 0; }
         .hero .tagline { 
             background: var(--jaune); 
             color: var(--noir); 
-            padding: 15px 30px; 
-            font-size: 1.5rem; 
+            display: inline-block;
+            padding: 10px 20px; 
+            margin-top: 20px;
             font-weight: bold;
-            text-transform: uppercase;
+            font-size: 1.2rem;
         }
 
-        /* Sections communes */
-        section { padding: 80px 10%; }
-        h2 { border-bottom: 5px solid var(--jaune); display: inline-block; margin-bottom: 30px; color: var(--vert); text-transform: uppercase; }
-        h3 { color: var(--bleu); margin-top: 30px; }
+        section { padding: 60px 10%; }
+        h2 { border-bottom: 4px solid var(--jaune); display: inline-block; margin-bottom: 30px; color: var(--vert); }
 
-        .content-text { font-size: 1.1rem; text-align: justify; }
-        .highlight { color: var(--vert); font-weight: bold; }
-
-        /* Grille Photos */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
         }
 
-        .card { text-align: center; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .card img { width: 100%; border-radius: 8px; margin-bottom: 15px; }
+        .card { text-align: center; border: 1px solid #ddd; border-radius: 8px; padding: 10px; }
+        .card img { width: 100%; border-radius: 5px; height: 200px; object-fit: cover; }
 
-        /* Formulaire */
-        .form-container { background: var(--gris); border-radius: 15px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .form-group { margin-bottom: 20px; }
-        label { font-weight: bold; display: block; margin-bottom: 5px; }
-        input, select { 
-            width: 100%; padding: 14px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 1rem;
-        }
+        .form-container { background: #f9f9f9; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 15px; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; }
         button { 
-            background: var(--bleu); color: white; border: none; padding: 18px 30px; 
-            border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.1rem;
-            transition: 0.3s;
+            background: var(--bleu); color: white; border: none; padding: 15px; 
+            border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%;
         }
-        button:hover { background: #0056b3; transform: translateY(-2px); }
 
-        footer { background: var(--noir); color: white; text-align: center; padding: 40px; }
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            section { padding: 50px 5%; }
-            nav { display: none; }
-        }
+        footer { background: var(--noir); color: white; text-align: center; padding: 30px; }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo-container">
-            <img src="images/logo.jpeg" alt="KNB Logo">
+            <img src="logo.jpeg" alt="Logo KNB">
             <div class="logo-text">KONGO NA BISO</div>
         </div>
         <nav>
-            <a href="#accueil">Accueil</a>
-            <a href="#histoire">Notre Histoire</a>
-            <a href="#engagements">Engagements</a>
+            <a href="#histoire">Histoire</a>
+            <a href="#activites">Activités</a>
             <a href="#adhesion">Adhésion</a>
         </nav>
     </header>
 
-    <section id="accueil" class="hero">
+    <section class="hero">
         <h1>KONGO NA BISO</h1>
-        <div class="tagline">Il est temps, Allons-y</div>
+        <div class="tagline">Le Congo nous appartient. Il est temps, Allons-y</div>
     </section>
 
     <section id="histoire">
-        <h2>Histoire du Mouvement</h2>
-        <div class="content-text">
-            <p>Le mouvement citoyen <span class="highlight">KONGO NA BISO</span> est né d’une volonté profonde de voir émerger une jeunesse congolaise consciente, engagée et actrice du changement.</p>
-            
-            <p>Fondé en <strong>septembre 2025</strong>, KONGO NA BISO a été créé par <strong>NGOMA MASSUNDU PHILIPPE</strong>, citoyen congolais de la République Démocratique du Congo, né à Kinshasa. Économiste de formation, il est licencié en économie et gestion de l’Université Protestante au Congo (UPC) depuis 2024.</p>
-            
-            <p>Face aux défis sociaux, économiques et humains que traverse la RDC — pauvreté, divisions sociales, injustices, manque d’opportunités pour la jeunesse — le fondateur et les premiers membres ont fait le choix de l’engagement citoyen plutôt que de l’indifférence.</p>
-            
-            <p><strong>KONGO NA BISO</strong>, qui signifie <em>« Le Congo nous appartient »</em>, est né comme un cri de réveil collectif et un appel à la responsabilité citoyenne. Le mouvement repose sur la conviction que l’avenir du Congo ne se construira ni dans la résignation ni dans l’attente, mais à travers l’action, la solidarité et l’unité de ses filles et fils.</p>
-        </div>
+        <h2>HISTOIRE DU MOUVEMENT</h2>
+        <p>Le mouvement citoyen <strong>KONGO NA BISO</strong> est né d’une volonté profonde de voir émerger une jeunesse congolaise consciente, engagée et actrice du changement.</p>
+        <p>Fondé en septembre 2025 par <strong>NGOMA MASSUNDU PHILIPPE</strong>, économiste de formation licencié de l’UPC. Face aux défis sociaux, économiques et humains de la RDC, le mouvement a fait le choix de l’engagement citoyen.</p>
+        <p>KONGO NA BISO est un cri de réveil collectif. Nous croyons que l’avenir du Congo se construira à travers l’action, la solidarité et l’unité.</p>
     </section>
 
-    <section id="engagements" style="background-color: #fff;">
-        <h2>Nos Engagements</h2>
-        <div class="content-text">
-            <p>Depuis sa création, le mouvement s’engage concrètement à :</p>
-            <ul style="list-style-type: square; padding-left: 20px;">
-                <li>Promouvoir les droits humains et la dignité humaine.</li>
-                <li>Encourager l’éducation, l’entrepreneuriat et l’innovation des jeunes.</li>
-                <li>Valoriser la culture congolaise, les langues et l’identité nationale.</li>
-                <li>Renforcer la participation citoyenne et la cohésion sociale.</li>
-                <li>Agir concrètement en faveur des personnes vulnérables.</li>
-            </ul>
-            <p style="margin-top: 20px; font-style: italic; border-left: 5px solid var(--jaune); padding-left: 15px;">
-                KONGO NA BISO n’est pas un simple mouvement : c’est une dynamique citoyenne, une main tendue, et une force collective déterminée à bâtir un Congo plus juste, solidaire et prospère.
-            </p>
-        </div>
-
+    <section id="activites">
+        <h2>NOS ACTIONS EN IMAGES</h2>
         <div class="grid">
-            <div class="card">
-                <img src="images/histoire.jpg" alt="Histoire">
-                <h3>HISTOIRE DU CONGO</h3>
-            </div>
-            <div class="card">
-                <img src="images/culture.jpg" alt="Culture">
-                <h3>CULTURE & PATRIMOINE</h3>
-            </div>
-            <div class="card">
-                <img src="images/jeunesse.jpg" alt="Jeunesse">
-                <h3>SPORT & JEUNESSE</h3>
-            </div>
-            <div class="card">
-                <img src="images/heros.jpg" alt="Héros">
-                <h3>GRANDS HOMMES</h3>
-            </div>
+            <div class="card"><img src="histoire.jpg" alt="Histoire"><h3>Histoire</h3></div>
+            <div class="card"><img src="culture.jpg" alt="Culture"><h3>Culture</h3></div>
+            <div class="card"><img src="jeunesse.jpg" alt="Jeunesse"><h3>Jeunesse</h3></div>
+            <div class="card"><img src="heroes.jpg" alt="Héros"><h3>Nos Héros</h3></div>
         </div>
     </section>
 
     <section id="adhesion">
-        <h2>Rejoindre le mouvement</h2>
+        <h2>ADHÉSION</h2>
         <div class="form-container">
             <form id="form-knb">
+                <div class="form-group"><input type="text" name="nom" placeholder="Nom" required></div>
+                <div class="form-group"><input type="text" name="postnom" placeholder="Postnom" required></div>
+                <div class="form-group"><input type="text" name="prenom" placeholder="Prénom" required></div>
+                <div class="form-group"><input type="text" name="adresse" placeholder="Adresse" required></div>
+                <div class="form-group"><input type="tel" name="telephone" placeholder="Téléphone" required></div>
+                <div class="form-group"><input type="email" name="email" placeholder="Email (Facultatif)"></div>
                 <div class="form-group">
-                    <input type="text" name="nom" placeholder="Nom" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" name="postnom" placeholder="Postnom" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" name="prenom" placeholder="Prénom" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" name="adresse" placeholder="Adresse complète" required>
-                </div>
-                <div class="form-group">
-                    <input type="tel" name="telephone" placeholder="N° de Téléphone (WhatsApp)" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="Email (Facultatif)">
-                </div>
-                <div class="form-group">
-                    <label>Prêt à verser une cotisation mensuelle ?</label>
+                    <label>Prêt à verser une cotisation ?</label>
                     <select name="cotisation">
-                        <option value="Oui">Oui, je souhaite contribuer</option>
-                        <option value="Non">Non, je ne peux pas pour le moment</option>
+                        <option value="Oui">Oui</option>
+                        <option value="Non">Non</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Type de membre :</label>
                     <select name="type_membre">
-                        <option value="Actif">Membre Actif (Engagé sur le terrain)</option>
-                        <option value="Passif">Membre Passif (Soutien à distance)</option>
+                        <option value="Actif">Membre Actif</option>
+                        <option value="Passif">Membre Passif</option>
                     </select>
                 </div>
                 <button type="submit" id="submit-btn">ENVOYER MON ADHÉSION</button>
@@ -232,9 +161,7 @@
     </section>
 
     <footer>
-        <p><strong>KONGO NA BISO (K.N.B)</strong></p>
-        <p>Le Congo nous appartient. Il est temps, Allons-y !</p>
-        <p style="font-size: 0.8rem; margin-top: 20px; opacity: 0.6;">&copy; 2026 Tous droits réservés.</p>
+        <p>&copy; 2026 KONGO NA BISO - Tous droits réservés</p>
     </footer>
 
     <script>
@@ -245,20 +172,18 @@
             e.preventDefault()
             const btn = document.getElementById('submit-btn')
             btn.disabled = true
-            btn.innerHTML = "Traitement en cours..."
+            btn.innerHTML = "Envoi en cours..."
             
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(response => {
-                    alert("Félicitations ! Votre adhésion a été transmise avec succès à l'équipe de KONGO NA BISO.")
+                    alert("Adhésion envoyée avec succès !")
                     form.reset()
                     btn.disabled = false
                     btn.innerHTML = "ENVOYER MON ADHÉSION"
                 })
                 .catch(error => {
-                    console.error('Erreur !', error.message)
-                    alert("Une erreur est survenue lors de l'envoi. Vérifiez votre connexion.")
+                    alert("Erreur lors de l'envoi.")
                     btn.disabled = false
-                    btn.innerHTML = "ENVOYER MON ADHÉSION"
                 })
         })
     </script>
