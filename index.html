@@ -3,225 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KNB - Site Officiel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Kongo Na Biso (K.N.B) - Le Congo nous appartient</title>
+    
+    <meta name="description" content="Découvrez KONGO NA BISO, mouvement citoyen engagé pour le changement en RDC fondé par Ngoma Massundu Philippe. Rejoignez-nous pour bâtir un Congo prospère.">
+    <meta name="keywords" content="Kongo Na Biso, KNB, RDC, Mouvement Citoyen, Ngoma Massundu Philippe, Engagement Jeunesse Congo">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --knb-blue: #0056ff;
-            --knb-yellow: #fcca13;
-            --knb-green: #28a745;
-            --knb-dark: #0a0e1a;
-            --knb-white: #ffffff;
+            --bleu: #007bff;
+            --jaune: #ffcc00;
+            --vert: #28a745;
+            --blanc: #ffffff;
+            --noir: #1a1a1a;
+            --gris: #f4f4f4;
         }
 
-        body, html {
-            margin: 0; padding: 0;
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--knb-dark);
-            color: var(--knb-white);
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            color: var(--noir);
+            line-height: 1.8;
             scroll-behavior: smooth;
         }
 
-        /* --- SPLASH SCREEN LOGO --- */
-        #splash-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--knb-blue);
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            z-index: 10000;
-            transition: transform 1s cubic-bezier(0.85, 0, 0.15, 1);
-        }
-        .splash-logo { width: 180px; animation: pulse 1.5s infinite ease-in-out; }
-        @keyframes pulse { 
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-
-        /* --- NAVIGATION --- */
-        nav {
-            position: sticky; top: 0;
-            background: rgba(10, 14, 26, 0.95);
-            backdrop-filter: blur(10px);
-            display: flex; justify-content: space-around;
-            padding: 15px 0; border-bottom: 2px solid var(--knb-yellow);
+        /* Header & Navigation */
+        header {
+            background: var(--vert);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
+
+        .logo-container { display: flex; align-items: center; }
+        .logo-container img { height: 60px; margin-right: 15px; border-radius: 5px; }
+        .logo-text { color: white; font-weight: bold; font-size: 1.3rem; letter-spacing: 1px; }
+
         nav a {
-            color: white; text-decoration: none; font-weight: 600;
-            font-size: 14px; text-transform: uppercase; transition: 0.3s;
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.85rem;
         }
-        nav a:hover, nav a.active { color: var(--knb-yellow); }
+        nav a:hover { color: var(--jaune); }
 
-        /* --- SECTIONS --- */
-        section { padding: 60px 20px; min-height: 80vh; display: none; }
-        section.active { display: block; animation: fadeIn 0.8s ease-in; }
-        
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        .container { max-width: 800px; margin: auto; }
-        
-        /* --- ACCUEIL (HISTORIQUE) --- */
-        .hero-img { width: 100%; border-radius: 20px; border: 3px solid var(--knb-blue); margin-bottom: 20px; }
-        .card { background: rgba(255,255,255,0.05); padding: 25px; border-radius: 20px; margin-bottom: 20px; border-left: 5px solid var(--knb-blue); }
-        h1, h2 { color: var(--knb-yellow); }
-
-        /* --- FORMULAIRE ADHESION --- */
-        .form-card { background: white; color: #333; padding: 30px; border-radius: 25px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
-        form { display: grid; gap: 15px; text-align: left; }
-        .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        label { font-size: 12px; font-weight: bold; color: var(--knb-blue); margin-bottom: -10px; }
-        input, select, textarea { padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-family: inherit; }
-        
-        .btn-submit {
-            background: var(--knb-green); color: white; border: none;
-            padding: 15px; border-radius: 10px; font-weight: 700;
-            cursor: pointer; transition: 0.3s;
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/hero-bg.jpg') center/cover;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
         }
-        .btn-submit:hover { background: #1e7e34; transform: scale(1.02); }
 
-        /* --- MEMBRES --- */
-        .member-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .member-card { text-align: center; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; border-bottom: 3px solid var(--knb-yellow); }
-        .member-img { width: 100px; height: 100px; border-radius: 50%; background: #444; margin-bottom: 10px; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; }
+        .hero .tagline { 
+            background: var(--jaune); 
+            color: var(--noir); 
+            padding: 15px 30px; 
+            font-size: 1.5rem; 
+            font-weight: bold;
+            text-transform: uppercase;
+        }
 
-        footer { text-align: center; padding: 40px; font-size: 12px; opacity: 0.5; }
+        /* Sections communes */
+        section { padding: 80px 10%; }
+        h2 { border-bottom: 5px solid var(--jaune); display: inline-block; margin-bottom: 30px; color: var(--vert); text-transform: uppercase; }
+        h3 { color: var(--bleu); margin-top: 30px; }
+
+        .content-text { font-size: 1.1rem; text-align: justify; }
+        .highlight { color: var(--vert); font-weight: bold; }
+
+        /* Grille Photos */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .card { text-align: center; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .card img { width: 100%; border-radius: 8px; margin-bottom: 15px; }
+
+        /* Formulaire */
+        .form-container { background: var(--gris); border-radius: 15px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .form-group { margin-bottom: 20px; }
+        label { font-weight: bold; display: block; margin-bottom: 5px; }
+        input, select { 
+            width: 100%; padding: 14px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 1rem;
+        }
+        button { 
+            background: var(--bleu); color: white; border: none; padding: 18px 30px; 
+            border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.1rem;
+            transition: 0.3s;
+        }
+        button:hover { background: #0056b3; transform: translateY(-2px); }
+
+        footer { background: var(--noir); color: white; text-align: center; padding: 40px; }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            section { padding: 50px 5%; }
+            nav { display: none; }
+        }
     </style>
 </head>
 <body>
 
-    <div id="splash-screen">
-        <img src="WhatsApp Image 2026-02-01 at 14.35.33.jpeg" class="splash-logo">
-        <h1 style="color:white; margin-top:20px;">KONGO NA BISO</h1>
-    </div>
+    <header>
+        <div class="logo-container">
+            <img src="images/logo.jpeg" alt="KNB Logo">
+            <div class="logo-text">KONGO NA BISO</div>
+        </div>
+        <nav>
+            <a href="#accueil">Accueil</a>
+            <a href="#histoire">Notre Histoire</a>
+            <a href="#engagements">Engagements</a>
+            <a href="#adhesion">Adhésion</a>
+        </nav>
+    </header>
 
-    <nav>
-        <a href="#accueil" onclick="showSection('accueil')" class="active">Présentation</a>
-        <a href="#adhesion" onclick="showSection('adhesion')">Adhésion</a>
-        <a href="#membres" onclick="showSection('membres')">Membres</a>
-    </nav>
+    <section id="accueil" class="hero">
+        <h1>KONGO NA BISO</h1>
+        <div class="tagline">Il est temps, Allons-y</div>
+    </section>
 
-    <section id="accueil" class="active">
-        <div class="container">
-            <img src="WhatsApp Image 2026-02-01 at 14.35.33.jpeg" class="hero-img">
-            <h1>Notre Histoire</h1>
+    <section id="histoire">
+        <h2>Histoire du Mouvement</h2>
+        <div class="content-text">
+            <p>Le mouvement citoyen <span class="highlight">KONGO NA BISO</span> est né d’une volonté profonde de voir émerger une jeunesse congolaise consciente, engagée et actrice du changement.</p>
+            
+            <p>Fondé en <strong>septembre 2025</strong>, KONGO NA BISO a été créé par <strong>NGOMA MASSUNDU PHILIPPE</strong>, citoyen congolais de la République Démocratique du Congo, né à Kinshasa. Économiste de formation, il est licencié en économie et gestion de l’Université Protestante au Congo (UPC) depuis 2024.</p>
+            
+            <p>Face aux défis sociaux, économiques et humains que traverse la RDC — pauvreté, divisions sociales, injustices, manque d’opportunités pour la jeunesse — le fondateur et les premiers membres ont fait le choix de l’engagement citoyen plutôt que de l’indifférence.</p>
+            
+            <p><strong>KONGO NA BISO</strong>, qui signifie <em>« Le Congo nous appartient »</em>, est né comme un cri de réveil collectif et un appel à la responsabilité citoyenne. Le mouvement repose sur la conviction que l’avenir du Congo ne se construira ni dans la résignation ni dans l’attente, mais à travers l’action, la solidarité et l’unité de ses filles et fils.</p>
+        </div>
+    </section>
+
+    <section id="engagements" style="background-color: #fff;">
+        <h2>Nos Engagements</h2>
+        <div class="content-text">
+            <p>Depuis sa création, le mouvement s’engage concrètement à :</p>
+            <ul style="list-style-type: square; padding-left: 20px;">
+                <li>Promouvoir les droits humains et la dignité humaine.</li>
+                <li>Encourager l’éducation, l’entrepreneuriat et l’innovation des jeunes.</li>
+                <li>Valoriser la culture congolaise, les langues et l’identité nationale.</li>
+                <li>Renforcer la participation citoyenne et la cohésion sociale.</li>
+                <li>Agir concrètement en faveur des personnes vulnérables.</li>
+            </ul>
+            <p style="margin-top: 20px; font-style: italic; border-left: 5px solid var(--jaune); padding-left: 15px;">
+                KONGO NA BISO n’est pas un simple mouvement : c’est une dynamique citoyenne, une main tendue, et une force collective déterminée à bâtir un Congo plus juste, solidaire et prospère.
+            </p>
+        </div>
+
+        <div class="grid">
             <div class="card">
-                <h3>Origine et Mission</h3>
-                <p>Le mouvement <strong>Kongo Na Biso (K.N.B)</strong> est né de la volonté de restaurer la dignité du peuple congolais. Notre mission est d'unifier les forces vives pour un Congo prospère.</p>
+                <img src="images/histoire.jpg" alt="Histoire">
+                <h3>HISTOIRE DU CONGO</h3>
             </div>
             <div class="card">
-                <h3>Nos Objectifs</h3>
-                <ul>
-                    <li>Éveil de la conscience nationale.</li>
-                    <li>Soutien aux initiatives locales.</li>
-                    <li>Intégrité et patriotisme.</li>
-                </ul>
+                <img src="images/culture.jpg" alt="Culture">
+                <h3>CULTURE & PATRIMOINE</h3>
+            </div>
+            <div class="card">
+                <img src="images/jeunesse.jpg" alt="Jeunesse">
+                <h3>SPORT & JEUNESSE</h3>
+            </div>
+            <div class="card">
+                <img src="images/heros.jpg" alt="Héros">
+                <h3>GRANDS HOMMES</h3>
             </div>
         </div>
     </section>
 
     <section id="adhesion">
-        <div class="container">
-            <h2>Devenir Membre</h2>
-            <p>Rejoignez le mouvement pour le changement.</p>
-            <div class="form-card">
-                <form id="form-knb">
-                    <label>IDENTITÉ</label>
-                    <div class="input-row">
-                        <input type="text" name="Nom" placeholder="Nom" required>
-                        <input type="text" name="Postnom" placeholder="Post-nom" required>
-                    </div>
-                    <input type="text" name="Prenom" placeholder="Prénom" required>
-                    
-                    <label>CONTACT ET ADRESSE</label>
-                    <input type="text" name="Adresse" placeholder="Adresse complète (Ville, Commune, Quartier)" required>
-                    <input type="tel" name="Telephone" placeholder="Numéro WhatsApp (Ex: +243...)" required>
-
-                    <label>COTISATION MENSUELLE</label>
-                    <select name="Cotisation" required>
-                        <option value="">Êtes-vous prêt à verser une cotisation ?</option>
-                        <option value="Oui">Oui, je m'engage</option>
-                        <option value="Non">Non, pas pour le moment</option>
+        <h2>Rejoindre le mouvement</h2>
+        <div class="form-container">
+            <form id="form-knb">
+                <div class="form-group">
+                    <input type="text" name="nom" placeholder="Nom" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="postnom" placeholder="Postnom" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="prenom" placeholder="Prénom" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="adresse" placeholder="Adresse complète" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="telephone" placeholder="N° de Téléphone (WhatsApp)" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email (Facultatif)">
+                </div>
+                <div class="form-group">
+                    <label>Prêt à verser une cotisation mensuelle ?</label>
+                    <select name="cotisation">
+                        <option value="Oui">Oui, je souhaite contribuer</option>
+                        <option value="Non">Non, je ne peux pas pour le moment</option>
                     </select>
-
-                    <button type="submit" class="btn-submit" id="submit-btn">ENVOYER MA DEMANDE</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <section id="membres">
-        <div class="container">
-            <h2>Comité Directeur</h2>
-            <div class="member-grid">
-                <div class="member-card">
-                    <div class="member-img"></div>
-                    <h4>Membre Fondateur</h4>
-                    <p style="font-size: 12px; color: var(--knb-yellow);">Président</p>
                 </div>
-                <div class="member-card">
-                    <div class="member-img"></div>
-                    <h4>Secrétariat</h4>
-                    <p style="font-size: 12px; color: var(--knb-yellow);">Coordination</p>
+                <div class="form-group">
+                    <label>Type de membre :</label>
+                    <select name="type_membre">
+                        <option value="Actif">Membre Actif (Engagé sur le terrain)</option>
+                        <option value="Passif">Membre Passif (Soutien à distance)</option>
+                    </select>
                 </div>
-            </div>
+                <button type="submit" id="submit-btn">ENVOYER MON ADHÉSION</button>
+            </form>
         </div>
     </section>
 
     <footer>
-        <p>Sinzili, il est temps, allons-y. <br> © 2026 Mouvement KNB - Tous droits réservés.</p>
+        <p><strong>KONGO NA BISO (K.N.B)</strong></p>
+        <p>Le Congo nous appartient. Il est temps, Allons-y !</p>
+        <p style="font-size: 0.8rem; margin-top: 20px; opacity: 0.6;">&copy; 2026 Tous droits réservés.</p>
     </footer>
 
     <script>
-        // --- SPLASH SCREEN ANIMATION ---
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const splash = document.getElementById('splash-screen');
-                splash.style.transform = 'translateY(-100%)';
-            }, 2500);
-        });
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbx1fbQZioM-qugdiKxRsXaHs7FpQOY40pOr8wiFqP5_PlH0PzRXXC2WT8CdNpqiA4H_/exec'
+        const form = document.getElementById('form-knb')
 
-        // --- NAVIGATION ENTRE SECTIONS ---
-        function showSection(id) {
-            document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            const btn = document.getElementById('submit-btn')
+            btn.disabled = true
+            btn.innerHTML = "Traitement en cours..."
             
-            document.getElementById(id).classList.add('active');
-            event.currentTarget.classList.add('active');
-            window.scrollTo(0,0);
-        }
-
-        // --- ENVOI GOOGLE SHEETS (SHEETBEST) ---
-        const form = document.getElementById('form-knb');
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('submit-btn');
-            btn.innerText = "TRAITEMENT EN COURS...";
-            btn.disabled = true;
-
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-            data.Date = new Date().toLocaleString('fr-FR');
-
-            try {
-                // REMPLACE L'URL CI-DESSOUS PAR TON URL SHEETBEST
-                const response = await fetch("https://api.sheetbest.com/sheets/e8fdc638-d9d8-4ed3-b140-44dcb4aceebc", {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
-
-                if(response.ok) {
-                    alert("Félicitations ! Votre demande d'adhésion a été enregistrée avec succès.");
-                    form.reset();
-                }
-            } catch (err) {
-                alert("Une erreur est survenue lors de l'envoi.");
-            } finally {
-                btn.innerText = "ENVOYER MA DEMANDE";
-                btn.disabled = false;
-            }
-        });
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    alert("Félicitations ! Votre adhésion a été transmise avec succès à l'équipe de KONGO NA BISO.")
+                    form.reset()
+                    btn.disabled = false
+                    btn.innerHTML = "ENVOYER MON ADHÉSION"
+                })
+                .catch(error => {
+                    console.error('Erreur !', error.message)
+                    alert("Une erreur est survenue lors de l'envoi. Vérifiez votre connexion.")
+                    btn.disabled = false
+                    btn.innerHTML = "ENVOYER MON ADHÉSION"
+                })
+        })
     </script>
 </body>
 </html>
