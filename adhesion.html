@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adhésion - KNB</title>
+    <title>Adhésion - KONGO NA BISO</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root { --vert: #007a33; --jaune: #f7d117; --bleu: #00aae4; --blanc: #ffffff; }
@@ -13,18 +13,20 @@
         header img { height: 40px; background: white; padding: 2px; border-radius: 4px; }
 
         .container { max-width: 500px; margin: 20px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        h2 { color: var(--vert); text-align: center; text-transform: uppercase; font-weight: 900; margin-bottom: 25px; }
+        h2 { color: var(--vert); text-align: center; text-transform: uppercase; font-weight: 900; margin-bottom: 25px; font-size: 1.2rem; }
         
         .form-group { margin-bottom: 15px; }
-        input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; box-sizing: border-box; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; box-sizing: border-box; font-family: inherit; }
         label { font-size: 0.8rem; font-weight: 700; color: #555; display: block; margin-bottom: 5px; }
 
-        .btn-submit { width: 100%; padding: 15px; background: var(--bleu); color: white; border: none; border-radius: 8px; font-weight: 900; font-size: 1rem; cursor: pointer; transition: 0.3s; }
-        .btn-submit:hover { background: #0089b8; }
+        .btn-submit { width: 100%; padding: 15px; background: var(--bleu); color: white; border: none; border-radius: 8px; font-weight: 900; font-size: 1rem; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
+        .btn-submit:disabled { background: #ccc; cursor: not-allowed; }
 
-        #message { margin-top: 20px; padding: 15px; border-radius: 8px; text-align: center; display: none; font-weight: 700; }
-        .success { background: #d4edda; color: #155724; }
-        .error { background: #f8d7da; color: #721c24; }
+        #message { margin-top: 20px; padding: 15px; border-radius: 8px; text-align: center; display: none; font-weight: 700; font-size: 0.9rem; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        
+        .back-link { text-align: center; display: block; margin-top: 20px; color: var(--vert); text-decoration: none; font-weight: 700; font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -32,7 +34,7 @@
 
     <div class="container">
         <h2>Fiche d'Adhésion</h2>
-        <form id="formKNB">
+        <form id="adhesionForm">
             <div class="form-group"><input type="text" name="nom" placeholder="NOM" required></div>
             <div class="form-group"><input type="text" name="postnom" placeholder="POSTNOM" required></div>
             <div class="form-group"><input type="text" name="prenom" placeholder="PRÉNOM" required></div>
@@ -42,39 +44,44 @@
                 <input type="email" name="email" placeholder="votre@email.com">
             </div>
             <div class="form-group">
-                <label>Cotisation mensuelle ?</label>
+                <label>Prêt à verser une cotisation mensuelle ?</label>
                 <select name="cotisation">
                     <option value="Oui">Oui, je suis prêt</option>
-                    <option value="Non">Non, pas maintenant</option>
+                    <option value="Non">Non, pas pour l'instant</option>
                 </select>
             </div>
             <div class="form-group">
-                <label>Type de membre</label>
+                <label>Type de membre souhaité</label>
                 <select name="type_membre">
-                    <option value="Actif">Membre Actif</option>
-                    <option value="Passif">Membre Passif</option>
+                    <option value="Actif">Membre Actif (Engagé sur le terrain)</option>
+                    <option value="Passif">Membre Passif (Soutien à distance)</option>
                 </select>
             </div>
             <button type="submit" class="btn-submit" id="submitBtn">ENVOYER MON ADHÉSION</button>
         </form>
         <div id="message"></div>
+        <a href="index.html" class="back-link">← Retour à l'accueil</a>
     </div>
 
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbx1fbQZioM-qugdiKxRsXaHs7FpQOY40pOr8wiFqP5_PlH0PzRXXC2WT8CdNpqiA4H_/exec';
-        const form = document.getElementById('formKNB');
+        // TON LIEN MIS À JOUR
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxL79LLwa1QMmjAqdvaU5hNkSLWBMBj6aIbn2TZwcxVgwJVQw5bALmoVOZqGTFU09lR/exec';
+        const form = document.getElementById('adhesionForm');
         const btn = document.getElementById('submitBtn');
         const msg = document.getElementById('message');
 
         form.addEventListener('submit', e => {
             e.preventDefault();
             btn.disabled = true;
-            btn.innerText = "ENVOI EN COURS...";
+            btn.innerText = "TRAITEMENT EN COURS...";
             msg.style.display = "none";
 
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            // Création des données à envoyer
+            const formData = new FormData(form);
+
+            fetch(scriptURL, { method: 'POST', body: formData })
                 .then(response => {
-                    msg.innerText = "FÉLICITATIONS ! Votre adhésion a été reçue.";
+                    msg.innerText = "BRAVO ! Votre fiche d'adhésion a été transmise avec succès au mouvement.";
                     msg.className = "success";
                     msg.style.display = "block";
                     form.reset();
@@ -82,11 +89,12 @@
                     btn.innerText = "ENVOYER MON ADHÉSION";
                 })
                 .catch(error => {
-                    msg.innerText = "ERREUR. Vérifiez votre connexion.";
+                    msg.innerText = "Oups ! Erreur de connexion. Vérifiez votre internet et réessayez.";
                     msg.className = "error";
                     msg.style.display = "block";
                     btn.disabled = false;
                     btn.innerText = "RÉESSAYER";
+                    console.error('Erreur!', error.message);
                 });
         });
     </script>
