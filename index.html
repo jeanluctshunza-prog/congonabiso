@@ -31,22 +31,27 @@
         nav a { color: white; text-decoration: none; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; margin-left: 10px; }
         nav a.active { color: var(--jaune); }
 
-        /* HERO SECTION RÉDUITE (Comme demandé) */
+        /* HERO SECTION : IMAGE ENTIÈRE ET SANS TEXTE */
         .hero { 
-            height: 40vh; 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('hero-bg.jpg') center/cover no-repeat;
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
-            color: white; 
+            height: auto;
+            min-height: 250px; /* Hauteur minimum pour mobile */
+            max-height: 450px; /* Évite qu'elle soit trop grande sur ordinateur */
             margin-top: 65px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f0f0;
         }
-        .hero h1 { font-size: 1.8rem; font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
-        .hero .tagline { background: var(--jaune); color: black; padding: 5px 15px; font-weight: 900; margin-top: 10px; font-size: 0.8rem; }
 
-        /* SECTION DIRIGEANTS (GRID PRO) */
+        .hero img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain; /* L'image entière sera visible sans être coupée */
+        }
+
+        /* SECTION DIRIGEANTS */
         .section-title { text-align: center; padding: 30px 5% 10px 5%; font-weight: 900; color: var(--vert); text-transform: uppercase; font-size: 1.2rem; }
         .section-title span { border-bottom: 4px solid var(--jaune); }
 
@@ -68,7 +73,7 @@
         .card h3 { margin: 0; font-size: 0.85rem; text-transform: uppercase; color: var(--vert); }
         .card p { margin: 5px 0 0; font-size: 0.7rem; font-weight: 700; color: #666; }
 
-        /* BOUTON ADHÉSION RAPIDE */
+        /* BOUTON ADHÉSION */
         .cta-box { text-align: center; padding: 20px 5% 50px 5%; }
         .btn-adherer { 
             background: var(--bleu); 
@@ -97,8 +102,7 @@
     </header>
 
     <div class="hero">
-        <h1>KONGO NA BISO</h1>
-        <div class="tagline">IL EST TEMPS ALLONS-Y</div>
+        <img src="hero-bg.jpg" alt="Kongo Na Biso Accueil">
     </div>
 
     <h2 class="section-title"><span>Équipe Dirigeante</span></h2>
