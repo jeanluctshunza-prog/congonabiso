@@ -3,99 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adhésion - KONGO NA BISO</title>
+    <title>Adhésion - KNB</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --vert: #007a33; --jaune: #f7d117; --bleu: #00aae4; --blanc: #ffffff; }
-        body { margin: 0; font-family: 'Montserrat', sans-serif; background: #f4f4f4; padding-top: 70px; }
+        :root { --vert: #007a33; --jaune: #f7d117; --blanc: #ffffff; }
+        body { margin: 0; font-family: 'Montserrat', sans-serif; background: #f4f4f4; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; }
         
-        header { background: var(--vert); height: 65px; position: fixed; width: 100%; top: 0; display: flex; align-items: center; justify-content: center; z-index: 1000; }
-        header img { height: 40px; background: white; padding: 2px; border-radius: 4px; }
-
-        .container { max-width: 500px; margin: 20px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        h2 { color: var(--vert); text-align: center; text-transform: uppercase; font-weight: 900; margin-bottom: 25px; font-size: 1.2rem; }
+        .container { width: 100%; max-width: 450px; background: white; padding: 30px; border-radius: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); position: relative; overflow: hidden; }
         
-        .form-group { margin-bottom: 15px; }
-        input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; box-sizing: border-box; font-family: inherit; }
-        label { font-size: 0.8rem; font-weight: 700; color: #555; display: block; margin-bottom: 5px; }
+        h2 { color: var(--vert); text-align: center; text-transform: uppercase; font-weight: 900; margin-bottom: 25px; }
+        input, select { width: 100%; padding: 15px; margin-bottom: 15px; border: 2px solid #eee; border-radius: 12px; font-size: 1rem; transition: 0.3s; }
+        input:focus { border-color: var(--vert); outline: none; }
 
-        .btn-submit { width: 100%; padding: 15px; background: var(--bleu); color: white; border: none; border-radius: 8px; font-weight: 900; font-size: 1rem; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
-        .btn-submit:disabled { background: #ccc; cursor: not-allowed; }
+        .btn-submit { width: 100%; padding: 18px; background: var(--vert); color: white; border: none; border-radius: 12px; font-weight: 900; cursor: pointer; font-size: 1rem; }
 
-        #message { margin-top: 20px; padding: 15px; border-radius: 8px; text-align: center; display: none; font-weight: 700; font-size: 0.9rem; }
-        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        /* EFFET CHARGEMENT */
+        #loader { display: none; text-align: center; padding: 40px 0; }
+        .spinner { 
+            width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid var(--vert); 
+            border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px; 
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* MESSAGE DE SUCCÈS INTERACTIF */
+        #success-ui { display: none; text-align: center; animation: fadeInUp 0.6s ease-out; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
-        .back-link { text-align: center; display: block; margin-top: 20px; color: var(--vert); text-decoration: none; font-weight: 700; font-size: 0.8rem; }
+        .check-icon { font-size: 60px; color: var(--vert); margin-bottom: 15px; }
+        .congrats { font-weight: 900; color: var(--vert); font-size: 1.5rem; margin-bottom: 10px; }
+        
+        .btn-whatsapp { 
+            display: inline-flex; align-items: center; justify-content: center; width: 100%; padding: 15px; 
+            background: #25D366; color: white; text-decoration: none; border-radius: 12px; font-weight: 700; margin-top: 20px; 
+        }
+        .btn-whatsapp img { width: 20px; margin-right: 10px; }
     </style>
 </head>
 <body>
-    <header><img src="logo.jpeg" alt="Logo KNB"></header>
 
     <div class="container">
-        <h2>Fiche d'Adhésion</h2>
-        <form id="adhesionForm">
-            <div class="form-group"><input type="text" name="nom" placeholder="NOM" required></div>
-            <div class="form-group"><input type="text" name="postnom" placeholder="POSTNOM" required></div>
-            <div class="form-group"><input type="text" name="prenom" placeholder="PRÉNOM" required></div>
-            <div class="form-group"><input type="tel" name="telephone" placeholder="TÉLÉPHONE (WHATSAPP)" required></div>
-            <div class="form-group">
-                <label>Email (Facultatif)</label>
-                <input type="email" name="email" placeholder="votre@email.com">
-            </div>
-            <div class="form-group">
-                <label>Prêt à verser une cotisation mensuelle ?</label>
+        <div id="form-step">
+            <h2>Rejoindre KNB</h2>
+            <form id="knbForm">
+                <input type="text" name="nom" placeholder="NOM" required>
+                <input type="text" name="postnom" placeholder="POSTNOM" required>
+                <input type="text" name="prenom" placeholder="PRÉNOM" required>
+                <input type="tel" name="telephone" placeholder="N° WHATSAPP" required>
+                <input type="email" name="email" placeholder="EMAIL (FACULTATIF)">
+                
                 <select name="cotisation">
+                    <option value="" disabled selected>Prêt pour cotisation ?</option>
                     <option value="Oui">Oui, je suis prêt</option>
-                    <option value="Non">Non, pas pour l'instant</option>
+                    <option value="Non">Pas pour l'instant</option>
                 </select>
-            </div>
-            <div class="form-group">
-                <label>Type de membre souhaité</label>
+
                 <select name="type_membre">
-                    <option value="Actif">Membre Actif (Engagé sur le terrain)</option>
-                    <option value="Passif">Membre Passif (Soutien à distance)</option>
+                    <option value="Actif">Membre Actif</option>
+                    <option value="Passif">Membre Passif</option>
                 </select>
-            </div>
-            <button type="submit" class="btn-submit" id="submitBtn">ENVOYER MON ADHÉSION</button>
-        </form>
-        <div id="message"></div>
-        <a href="index.html" class="back-link">← Retour à l'accueil</a>
+
+                <button type="submit" class="btn-submit">ENVOYER MON ADHÉSION</button>
+            </form>
+        </div>
+
+        <div id="loader">
+            <div class="spinner"></div>
+            <p style="font-weight: 700; color: var(--vert);">Traitement de votre dossier...</p>
+        </div>
+
+        <div id="success-ui">
+            <div class="check-icon">✔</div>
+            <div class="congrats">BIENVENUE PARMI NOUS !</div>
+            <p>Votre adhésion au mouvement <strong>KONGO NA BISO</strong> a été enregistrée avec succès.</p>
+            
+            <a href="https://wa.me/243000000000?text=Bonjour, je viens de m'inscrire au mouvement KNB" class="btn-whatsapp">
+                CONTACTER SUR WHATSAPP
+            </a>
+            
+            <a href="index.html" style="display:block; margin-top:20px; color:#888; text-decoration:none; font-size:0.8rem;">Retour à l'accueil</a>
+        </div>
     </div>
 
     <script>
-        // TON LIEN MIS À JOUR
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxL79LLwa1QMmjAqdvaU5hNkSLWBMBj6aIbn2TZwcxVgwJVQw5bALmoVOZqGTFU09lR/exec';
-        const form = document.getElementById('adhesionForm');
-        const btn = document.getElementById('submitBtn');
-        const msg = document.getElementById('message');
-
+        const form = document.getElementById('knbForm');
+        
         form.addEventListener('submit', e => {
             e.preventDefault();
-            btn.disabled = true;
-            btn.innerText = "TRAITEMENT EN COURS...";
-            msg.style.display = "none";
+            
+            // Masquer formulaire, montrer loader
+            document.getElementById('form-step').style.display = 'none';
+            document.getElementById('loader').style.display = 'block';
 
-            // Création des données à envoyer
-            const formData = new FormData(form);
-
-            fetch(scriptURL, { method: 'POST', body: formData })
-                .then(response => {
-                    msg.innerText = "BRAVO ! Votre fiche d'adhésion a été transmise avec succès au mouvement.";
-                    msg.className = "success";
-                    msg.style.display = "block";
-                    form.reset();
-                    btn.disabled = false;
-                    btn.innerText = "ENVOYER MON ADHÉSION";
-                })
-                .catch(error => {
-                    msg.innerText = "Oups ! Erreur de connexion. Vérifiez votre internet et réessayez.";
-                    msg.className = "error";
-                    msg.style.display = "block";
-                    btn.disabled = false;
-                    btn.innerText = "RÉESSAYER";
-                    console.error('Erreur!', error.message);
-                });
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                // Masquer loader, montrer succès
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('success-ui').style.display = 'block';
+            })
+            .catch(error => {
+                alert("Erreur réseau. Réessayez.");
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('form-step').style.display = 'block';
+            });
         });
     </script>
 </body>
