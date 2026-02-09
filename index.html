@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KONGO NA BISO - Officiel</title>
-    <link rel="icon" href="logo.jpeg">
+    <link rel="icon" type="image/jpeg" href="logo.jpeg">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root { --vert: #007a33; --jaune: #f7d117; --bleu: #00aae4; --noir: #1a1a1a; --blanc: #ffffff; }
@@ -15,7 +15,7 @@
             background: var(--vert); height: 70px; display: flex; align-items: center; 
             justify-content: space-between; padding: 0 15px; position: fixed; width: 100%; top: 0; z-index: 1000; 
         }
-        .logo-box img { height: 40px; background: white; padding: 3px; border-radius: 5px; flex-shrink: 0; }
+        .logo-box img { height: 40px; background: white; padding: 3px; border-radius: 5px; }
         nav { display: flex; gap: 5px; }
         nav a { color: white; text-decoration: none; font-weight: 700; font-size: 0.6rem; text-transform: uppercase; padding: 10px 6px; background: rgba(255,255,255,0.1); border-radius: 5px; }
 
@@ -29,23 +29,37 @@
             box-shadow: 0 10px 20px rgba(0,170,228,0.3); font-size: 1.1rem; text-transform: uppercase;
         }
 
-        .section-title { text-align: center; padding: 20px 0; font-weight: 900; color: var(--vert); text-transform: uppercase; font-size: 1.1rem; }
+        .section-title { text-align: center; padding: 30px 10px 10px; font-weight: 900; color: var(--vert); text-transform: uppercase; font-size: 1.2rem; }
 
-        /* CAROUSEL */
+        /* CAROUSEL CONFIGURÉ POUR 8 PHOTOS */
         .slider { width: 100%; overflow: hidden; background: #f9f9f9; padding: 20px 0; }
-        .slider-track { display: flex; width: calc(280px * 8); animation: scroll 20s linear infinite; }
-        .slide { width: 280px; height: 200px; padding: 0 10px; flex-shrink: 0; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 15px; }
+        .slider-track { 
+            display: flex; 
+            width: calc(280px * 16); /* 8 images + 8 copies = 16 */
+            animation: scroll 30s linear infinite; 
+        }
+        .slide { width: 280px; height: 210px; padding: 0 10px; flex-shrink: 0; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
 
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-280px * 4)); } }
+        @keyframes scroll { 
+            0% { transform: translateX(0); } 
+            100% { transform: translateX(calc(-280px * 8)); } /* On défile les 8 premières */
+        }
 
-        /* ÉQUIPE DIRIGEANTE (Tous les postes) */
-        .dirigeants-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; }
+        /* GRILLE ÉQUIPE */
+        .dirigeants-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; max-width: 600px; margin: 0 auto; }
         .card { background: #fff; border-top: 4px solid var(--vert); padding: 15px 5px; border-radius: 12px; text-align: center; box-shadow: 0 3px 6px rgba(0,0,0,0.05); }
+        .card.president { grid-column: span 2; border-top: 6px solid var(--jaune); background: #fdfdfd; padding: 25px 10px; }
         .card h3 { margin: 0; font-size: 0.75rem; color: var(--vert); text-transform: uppercase; }
-        .card p { margin: 3px 0 0; font-size: 0.6rem; font-weight: 700; color: #666; }
+        .card p { margin: 3px 0 0; font-size: 0.6rem; font-weight: 700; color: #666; text-transform: uppercase; }
 
-        footer { background: var(--noir); color: white; text-align: center; padding: 40px 20px; font-size: 0.7rem; }
+        /* CONTACT & RÉSEAUX */
+        .contact-section { background: #f4f4f4; padding: 40px 20px; text-align: center; border-top: 1px solid #ddd; }
+        .contact-info p { margin: 8px 0; font-weight: 700; font-size: 0.9rem; }
+        .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 15px; }
+        .social-links a { background: white; padding: 10px 15px; border-radius: 8px; text-decoration: none; color: var(--noir); font-size: 0.7rem; font-weight: 900; border: 1px solid #ccc; }
+
+        footer { background: var(--noir); color: white; text-align: center; padding: 30px 20px; font-size: 0.7rem; }
     </style>
 </head>
 <body>
@@ -59,42 +73,73 @@
     </header>
 
     <div class="hero"><img src="hero-bg.jpg" alt="KNB"></div>
-
     <div class="cta-box"><a href="adhesion.html" class="btn-adherer">Rejoindre le Mouvement</a></div>
 
-    <h2 class="section-title">KNB HERO CULTURE HISTOIRE ET JEUNESSE</h2>
+    <h2 class="section-title">Activités KONGO NA BISO</h2>
     <div class="slider">
         <div class="slider-track">
-            <div class="slide"><img src="culture.jpg"></div>
-            <div class="slide"><img src="héros.jpg"></div>
-            <div class="slide"><img src="histoire.jpg"></div>
-            <div class="slide"><img src="jeunesse.jpg"></div>
-            <div class="slide"><img src="culture.jpg"></div>
-            <div class="slide"><img src="héros.jpg"></div>
-            <div class="slide"><img src="histoire.jpg"></div>
-            <div class="slide"><img src="jeunesse.jpg"></div>
+            <div class="slide"><img src="photo1.jpg"></div>
+            <div class="slide"><img src="photo2.jpg"></div>
+            <div class="slide"><img src="photo3.jpg"></div>
+            <div class="slide"><img src="photo4.jpg"></div>
+            <div class="slide"><img src="photo5.jpg"></div>
+            <div class="slide"><img src="photo6.jpg"></div>
+            <div class="slide"><img src="photo7.jpg"></div>
+            <div class="slide"><img src="photo8.jpg"></div>
+            <div class="slide"><img src="photo1.jpg"></div>
+            <div class="slide"><img src="photo2.jpg"></div>
+            <div class="slide"><img src="photo3.jpg"></div>
+            <div class="slide"><img src="photo4.jpg"></div>
+            <div class="slide"><img src="photo5.jpg"></div>
+            <div class="slide"><img src="photo6.jpg"></div>
+            <div class="slide"><img src="photo7.jpg"></div>
+            <div class="slide"><img src="photo8.jpg"></div>
         </div>
     </div>
 
     <h2 class="section-title">Équipe Dirigeante</h2>
     <div class="dirigeants-grid">
-        <div class="card"><h3>CHRISTOPHER</h3><p>VICE PRÉSIDENT</p></div>
-        <div class="card"><h3>AMOS</h3><p>DIR. CAB</p></div>
-        <div class="card"><h3>STANIS</h3><p>SEC. ADMINISTRATIF</p></div>
-        <div class="card"><h3>MARIAM</h3><p>TRÉSORIÈRE</p></div>
-        <div class="card"><h3>DYLAN</h3><p>MÉDIA & PROJET</p></div>
-        <div class="card"><h3>EMILE</h3><p>S.G.A DISCIPLINE</p></div>
-        <div class="card"><h3>EXAUCE</h3><p>S.G.A FINANCE</p></div>
-        <div class="card"><h3>MAËS</h3><p>S.G.A MOBILISATION</p></div>
-        <div class="card"><h3>GIOVANNI</h3><p>S.G.A PARTENARIAT</p></div>
-        <div class="card"><h3>MARDOCHÉ</h3><p>COMMUNICATION</p></div>
-        <div class="card"><h3>KEVIN</h3><p>ORGANISATION</p></div>
-        <div class="card"><h3>FEZA</h3><p>COMMUNICATRICE</p></div>
-        <div class="card"><h3>AARON ILUNGA</h3><p>SÉCURITÉ</p></div>
-        <div class="card"><h3>MANASSÉ</h3><p>SÉCURITÉ</p></div>
-        <div class="card"><h3>BEVERME</h3><p>JEUNESSE</p></div>
-        <div class="card"><h3>OLIVIER</h3><p>SENSIBILISATION</p></div>
-        <div class="card"><h3>BENEDICTE</h3><p>PARSEC PRÉSIDENT</p></div>
+        <div class="card president"><h3>NGOMA MASSUNDU PHILIPPE</h3><p>PRÉSIDENT</p></div>
+        <div class="card"><h3>KINGO NGBIAMBI CHRISTOPHER</h3><p>VICE PRÉSIDENT</p></div>
+        <div class="card"><h3>MUKENDI KANKU SEDIM</h3><p>Secrétaire Général</p></div>
+        <div class="card"><h3>IYOTO KIMBIMBI EMILE</h3><p>S.G.A DISCIPLINE & RÈGLEMENT</p></div>
+        <div class="card"><h3>THETIKA KABEYA GIOVANNI</h3><p>S.G.A PARTENARIAT STRATÉGIQUE</p></div>
+        <div class="card"><h3>WAKIMESA KIMPILAMPILA GUY</h3><p>S.G.A MOBILISATION ET SENSIBILISATION</p></div>
+        <div class="card"><h3>EXAUCE TSHIMANGA NGOMA</h3><p>S.G.A FINANCE & DÉVELOPPEMENT</p></div>
+        <div class="card"><h3>EHOMBA MPIA AMOS</h3><p>DIR.CAB DU PRÉSIDENT</p></div>
+        <div class="card"><h3>NGANA YENGI MARIAM</h3><p>TRÉSORIÈRE</p></div>
+        <div class="card"><h3>ZOLA BENEDICTE</h3><p>PARSEC PRÉSIDENT</p></div>
+        <div class="card"><h3>NGOMA MAKUALA OLIVIER</h3><p>SENSIBILISATION</p></div>
+        <div class="card"><h3>MARDOCHÉ</h3><p>RESPONSABLE DE LA COMMUNICATION</p></div>
+        <div class="card"><h3>FEZA MUSA JOSEPHINE</h3><p>COMMUNICATRICE</p></div>
+        <div class="card"><h3>TSHISUAKA NJILA DYLAN</h3><p>Média & R.S / Projet & dév.</p></div>
+        <div class="card"><h3>NGANDWE LUFUNGULO STANIS</h3><p>SECRÉTAIRE ADMINISTRATIF</p></div>
+        <div class="card"><h3>KEVIN KINGAMBO</h3><p>CHARGÉ DE L’ORGANISATION</p></div>
+        <div class="card"><h3>OKONGO MPALA BEVERME</h3><p>JEUNESSE</p></div>
+        <div class="card"><h3>AARON ILUNGA</h3><p>CHARGÉ DE LA SÉCURITÉ</p></div>
+        <div class="card"><h3>MANASSÉ NGONGO</h3><p>CHARGÉ DE LA SÉCURITÉ</p></div>
+        <div class="card"><h3>DIKITELE ANGELINA</h3><p>Conseillère</p></div>
+        <div class="card"><h3>ALENGBIA BIANCCHI</h3><p>Consultant</p></div>
+        <div class="card"><h3>KASSANGA BRONDY</h3><p>Consultant</p></div>
+        <div class="card"><h3>LUKUSA JONATHAN</h3><p>Consultant</p></div>
+        <div class="card"><h3>SAMUEL MAKOFI</h3><p>Conseiller</p></div>
+        <div class="card"><h3>PATSHI PASCAL</h3><p>Conseiller</p></div>
+        <div class="card"><h3>AARON LUBOYA KAYOKO</h3><p>Consultant</p></div>
+        <div class="card"><h3>JOELLE KABASELE</h3><p>Consultante</p></div>
+        <div class="card"><h3>LEA NGOMA</h3><p>Consultante</p></div>
+    </div>
+
+    <div class="contact-section">
+        <h2 style="color: var(--vert); margin-bottom: 20px;">À PROPOS & CONTACT</h2>
+        <div class="contact-info">
+            <p>Gmail: kongonabiso01@gmail.com</p>
+            <p>Contact: +243 975 835 730</p>
+        </div>
+        <div class="social-links">
+            <a href="#">Instagram: @kongonabiso.k.n.b</a>
+            <a href="#">Twitter: @KongoNaBiso01</a>
+            <a href="#">Tiktok: @kongo.na.biso1</a>
+        </div>
     </div>
 
     <footer><p>KONGO NA BISO (KNB) © 2026</p></footer>
